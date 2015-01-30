@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>API's Web</title>
+
+    <meta name="description" content="Introducción a las interfaces de aplicacion programables">
+    <meta name="author" content="Luis Ciudad García">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/theme/beige.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <div class="header">
+          <img class="logo" src="images/cosfera_campus_azul.png" />
+          <span>REST - API's Web</span>
+        </div>
+
+        <section data-html="slides/index.html">
+          <h2>Tema 1: Arquitectura REST</h2>
+          <strong>APIs Web - Introducción</strong>
+        </section>
+
+        <section>
+          <h2>¿Qué es un API?</h2>
+          <img src="images/apis.gif" />
+          <aside class="notes">
+            Explicar lo que es un API.
+            Application Programming Interface.
+            Las APIs existen para cualquier cosa, gemas, lenguages, etc.
+            Solo son formas de acceder a la informacion.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Hoy todo son APIs</h3>
+          <img src="images/music-api-logos.png" />
+          <aside class="notes">
+            Estas son solo de musica, comentar Facebook, Google Maps, Twitter, etc
+          </aside>
+        </section>
+
+        <section>
+          <h2>¿Que tienen que ver con REST?</h2>
+          <img src="images/rest-api.jpg" />
+          <aside class="notes">
+            REST son una serie de buenas practicas para construir un API.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Demo Time!</h1>
+          <pre><code data-trim>
+require 'twitter'
+
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key        = ENV["CONSUMER_KEY"]
+  config.consumer_secret     = ENV["CONSUMER_SECRET"]
+  config.access_token        = ENV["ACCESS_TOKEN"]
+  config.access_token_secret = ENV["ACCESS_SECRET"]
+end
+
+client.update( "I'm tweeting" )
+client.followers( "sma477er" )
+client.friends( "sm477er" )
+          </code></pre>
+
+          <aside class="notes">
+            Cargar variables de entorno!!!
+          </aside>
+        </section>
+
+        <section>
+          <h2>Mas ejemplos</h2>
+          <pre><code data-trim>
+require 'rubypress'
+
+wp = Rubypress::Client.new(
+  :host     => "yourwordpresssite.com",
+  :username => "yourwordpressuser@wordpress.com",
+  :password => "yourwordpresspassword"
+  )
+
+wp.getOptions()
+=> {"software_name"=>{"desc"=>"Software Name", 
+                      "readonly"=>true, 
+                      "value"=>"WordPress"}}
+
+wp.newPost( ... )
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>¿Cómo se comunican con el servidor?</h2>
+          <aside class="notes">
+            APIs que usan HTTP para la comunicacion se consideran APIs Web.
+            Poner atencion a la denominación "CLIENTE"
+            La forma de enviar esas peticiones HTTP es lo que marca si un API es REST
+          </aside>
+        </section>
+
+        <section>
+          <h3>Peticion y Respuesta</h3>
+          <table width="100%">
+            <tr>
+              <td>
+                <pre><code data-tim>GET /index.html HTTP/1.1
+Host: www.example.com</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <pre><code data-tim>HTTP/1.1 200 OK
+Date: Mon, 23 May 2005 22:38:34 GMT
+Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT
+ETag: "3f80f-1b6-3e1cb03b"
+Content-Type: text/html; charset=UTF-8
+Content-Length: 131
+
+&lthtml&gt
+&lthead&gt
+  &lttitle&gtExample Page&lt/title&gt
+&lt/head&gt
+&ltbody&gt
+  Hello World
+&lt/body&gt
+&lt/html&gt</code></pre>
+              </td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h2>Verbos</h2>
+                <pre><code data-tim>GET /index.html HTTP/1.1
+Host: www.example.com</code></pre>
+          <table>
+            <tr class="fragment">
+              <td><span class="green-text">GET</span></td><td>Recuperar información</td>
+            </tr>
+            <tr class="fragment">
+              <td><span class="blue-text">POST</span></td><td>Crear contenidos (recursos)</td>
+            </tr>
+            <tr class="fragment">
+              <td><span class="red-text">DELETE</span></td><td>Eliminar información</td>
+            </tr>
+            <tr class="fragment">
+              <td><span class="orange-text">PUT/PATCH</span></td><td>Actualizar información</td>
+            </tr>
+          </table>
+          <aside class="notes">
+            Relacionar esto con un CRUD
+          </aside>
+        </section>
+        <section>
+          <h2>URN</h2>
+            <pre><code data-tim>GET /index.html HTTP/1.1
+Host: www.example.com</code></pre>
+          <div>
+            <span>U</span><span class="fragment">niform</span>
+            <span> R</span><span class="fragment">esource</span>
+            <span> N</span><span class="fragment">ame</span>
+          </div>
+          <div class="fragment">Identificador unico de recurso</div>
+        </section>
+        <section>
+          <h2>Protocolo</h2>
+          <h1>HTTP/1.1</h1>
+          <aside class="notes">
+            Comentar que HTTP 2.0 esta viniendo, aun asi no se tiene que preocupar de esto
+          </aside>
+        </section>
+        <section>
+          <h2>Cabeceras</h2>
+            <pre><code data-tim>GET /tutorials/other/top-20-mysql-best-practices/ HTTP/1.1
+Host: net.tutsplus.com
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5 (.NET CLR 3.5.30729)
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Keep-Alive: 300
+Connection: keep-alive
+Cookie: PHPSESSID=r2t5uvjq435r4q7ib3vtdjq120
+Pragma: no-cache
+Cache-Control: no-cache</code></pre>
+          <aside class="notes">
+            Existen muchas distintas incluso propias
+            Normalemnte las pone el cliente o el servidor Web de forma automatica
+            Content-Disposition: attachment; filename=video.mp4
+          </aside>
+        </section>
+        <section>
+          <h2>Cuerpo</h2>
+          <pre><code data-tim>GET /personajes/tyrion HTTP/1.1
+Host: www.juego-de-tronos.com</code></pre>
+          <div class="formats-container">
+            <pre class="fragment current-visible"><code data-tim>HTTP/1.1 200 OK
+Date: Mon, 23 May 2005 22:38:34 GMT
+Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT
+ETag: "3f80f-1b6-3e1cb03b"
+Content-Type: text/html
+
+&ltul&gt
+  &ltli&gtNombre: Tyrion&lt/li&gt
+  &ltli&gtFamilia: Lannister&lt/li&gt
+&lt/ul&gt</code></pre>
+            <pre class="fragment current-visible"><code data-tim class="http">HTTP/1.1 200 OK
+Date: Mon, 23 May 2005 22:38:34 GMT
+Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT
+ETag: "3f80f-1b6-3e1cb03b"
+Content-Type: application/json
+...
+
+{
+  "Personaje": {
+    "Nombre": "Tyrion",
+    "Familia": "Lannister"
+    }
+}</code></pre>
+            <pre class="fragment current-visible"><code data-tim class="http">HTTP/1.1 200 OK
+Date: Mon, 23 May 2005 22:38:34 GMT
+Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT
+ETag: "3f80f-1b6-3e1cb03b"
+Content-Type: application/xml
+...
+
+&ltPersonaje&gt
+  &ltNombre&gtTyrion&lt/Nombre&gt
+  &ltFamilia&gtLannister&lt/Familia&gt
+&lt/Personaje&gt</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Códigos de respuesta</h2>
+          <div class="formats-container">
+            <div class="fragment current-visible">
+              <table>
+                <tr>
+                  <td><span>1xx</span></td><td>Información</td>
+                </tr>
+                <tr>
+                  <td><span>2xx</span></td><td>Éxito</td>
+                </tr>
+                <tr>
+                  <td><span>3xx</span></td><td>Redirección</td>
+                </tr>
+                <tr>
+                  <td><span>4xx</span></td><td>Error del cliente</td>
+                </tr>
+                <tr>
+                  <td><span>5xx</span></td><td>Error del servidor</td>
+                </tr>
+              </table>
+            </div>
+            <div class="fragment current-visible">
+              <h3>1xx - Información</h3>
+              <table>
+                <tr><td>100</td><td>Continue</td></tr>
+                <tr><td>101</td><td>Switching Protocols</td></tr>
+              </table>
+            </div>
+            <div class="fragment current-visible">
+              <h3>2xx - Éxito</h3>
+              <table>
+                <tr><td>200</td><td>Ok</td></tr>
+                <tr><td>201</td><td>Create</td></tr>
+                <tr><td>202</td><td>Accepted</td></tr>
+                <tr><td>204</td><td>No content</td></tr>
+              </table>
+            </div>
+            <div class="fragment current-visible">
+              <h3>3xx - Redirección</h3>
+              <table>
+                <tr><td>301</td><td>Moved Permanently</td></tr>
+                <tr><td>304</td><td>Not Modified</td></tr>
+              </table>
+            </div>
+            <div class="fragment current-visible">
+              <h3>4xx - Error del Cliente</h3>
+              <table>
+                <tr><td>400</td><td>Bad Request</td></tr>
+                <tr><td>401</td><td>Unauthorized</td></tr>
+                <tr><td>403</td><td>Forbidden</td></tr>
+                <tr><td>404</td><td>Not found</td></tr>
+                <tr><td>422</td><td>Unprocessable Entity</td></tr>
+              </table>
+            </div>
+            <div class="fragment current-visible">
+              <h3>5xx - Error de Servidor</h3>
+              <table>
+                <tr><td>500</td><td>Internal Server Error</td></tr>
+                <tr><td>502</td><td>Bad Gateway</td></tr>
+                <tr><td>504</td><td>Gateway Timeout</td></tr>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

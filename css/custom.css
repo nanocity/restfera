@@ -1,0 +1,43 @@
+.slides .header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #539DC4;
+  font-size: 1rem;
+}
+
+.slides .header img {
+  width: 30px;
+}
+
+.slides .header span {
+  vertical-align: super;
+}
+
+.green-text {
+  color: green;
+}
+
+.blue-text {
+  color: blue;
+}
+
+.red-text {
+  color: red;
+}
+
+.orange-text {
+  color: orange;
+}
+
+.reveal .slides section .fragment.current-visible {
+  display: none;
+}
+
+.reveal .slides section .fragment.current-visible.current-fragment {
+  display: inherit;
+}
+
+.formats-container {
+  min-height: 300px;
+}
