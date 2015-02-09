@@ -15,8 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/theme/beige.css" id="theme">
+    <link rel="stylesheet" href="css/custom.css">
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -46,8 +46,9 @@
         </div>
 
         <section data-html="slides/index.html">
-          <h2>Tema 1: Arquitectura REST</h2>
-          <strong>APIs Web - Introducción</strong>
+          <h2>Tema 1: Introduccion a HTTP</h2>
+          <img src="images/intro.jpg" />
+          <div><strong>APIs Web - Introducción</strong></div>
         </section>
 
         <section>
@@ -58,6 +59,7 @@
             Application Programming Interface.
             Las APIs existen para cualquier cosa, gemas, lenguages, etc.
             Solo son formas de acceder a la informacion.
+            Permiten acceder desde muchas interfaces distintas.
           </aside>
         </section>
 
@@ -66,14 +68,6 @@
           <img src="images/music-api-logos.png" />
           <aside class="notes">
             Estas son solo de musica, comentar Facebook, Google Maps, Twitter, etc
-          </aside>
-        </section>
-
-        <section>
-          <h2>¿Que tienen que ver con REST?</h2>
-          <img src="images/rest-api.jpg" />
-          <aside class="notes">
-            REST son una serie de buenas practicas para construir un API.
           </aside>
         </section>
 
@@ -89,13 +83,16 @@ client = Twitter::REST::Client.new do |config|
   config.access_token_secret = ENV["ACCESS_SECRET"]
 end
 
-client.update( "I'm tweeting" )
-client.followers( "sma477er" )
-client.friends( "sm477er" )
+
+#client.update( "I'm tweeting" )
+
+puts client.followers( "sm477er" ).first.name
+puts client.friends( "sm477er" ).first.name
           </code></pre>
 
           <aside class="notes">
             Cargar variables de entorno!!!
+            Esto es un cliente de API, no el API en si misma
           </aside>
         </section>
 
@@ -120,11 +117,26 @@ wp.newPost( ... )
         </section>
 
         <section>
-          <h2>¿Cómo se comunican con el servidor?</h2>
+          <h2>¿Que tienen que ver con REST?</h2>
+          <img src="images/rest-api.jpg" />
           <aside class="notes">
-            APIs que usan HTTP para la comunicacion se consideran APIs Web.
-            Poner atencion a la denominación "CLIENTE"
-            La forma de enviar esas peticiones HTTP es lo que marca si un API es REST
+            REST son una serie de buenas practicas para construir un API.
+          </aside>
+        </section>
+
+        <section>
+          <h2>¿Cómo se comunican con el servidor?</h2>
+          <img src="images/httpcom.jpg" />
+          <h3 class="fragment">Hypertext Transfer Protocol (HTTP)</h3>
+          <aside class="notes">
+            <ul>
+              <li>APIs que usan HTTP para la comunicacion se consideran APIs Web.</li>
+              <li>Poner atencion a la denominación "CLIENTE"</li>
+              <li>La forma de enviar esas peticiones HTTP es lo que marca si un API es REST</li>
+              <li>HTTP esta formalmente definido y se puede consultar el RFC 2616</li>
+              <li>Un autor R. Fielding</li>
+              <li>http://tools.ietf.org/html/rfc2616</li>
+            </ul>
           </aside>
         </section>
 
@@ -345,6 +357,7 @@ Content-Type: application/xml
         progress: true,
         history: true,
         center: true,
+        slideNumber: true,
 
         transition: 'slide', // none/fade/slide/convex/concave/zoom
 

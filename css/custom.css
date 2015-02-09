@@ -41,3 +41,8 @@
 .formats-container {
   min-height: 300px;
 }
+
+.formats-container img {
+  display: block;
+  margin: auto !important;
+}
