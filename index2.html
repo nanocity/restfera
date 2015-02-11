@@ -85,6 +85,43 @@
           </aside>
         </section>
 
+        <section>
+          <h2>Recursos</h2>
+          <ul>
+            <li>Todo es un recurso</li>
+            <li>Tienen una URN únivoca</li>
+            <li>Las operaciones se realizan sobre ellos</li>
+            <li>Tienen sentido en la lógica de negocio de la aplicación</li>
+          </ul>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h2>BiblioTech - Recursos</h2>
+          <table>
+            <tr><td class="fragment">Socios</td><td class="fragment">/socios</td></tr>
+            <tr><td class="fragment">Libros</td><td class="fragment">/libros</td></tr>
+            <tr><td class="fragment">Préstamos</td><td class="fragment">/socios/&ltid&gt/prestamos</td></tr>
+          </table>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h2>BiblioTech - Operaciones</h2>
+          <table>
+            <tr><td class="fragment">Nuevo libro</td><td class="fragment">POST /libros</td></tr>
+            <tr><td class="fragment">Buscar libro</td><td class="fragment">GET /libros?titulo=Quijote</td></tr>
+            <tr><td class="fragment">Borrar socio</td><td class="fragment">DELETE /socios/&ltid&gt</td></tr>
+            <tr><td class="fragment">Ver libro</td><td class="fragment">GET /libros/&ltid&gt</td></tr>
+            <tr><td class="fragment">Dar préstamo</td><td class="fragment">POST /libros/&ltid&gt/prestamos</td></tr>
+            <tr><td class="fragment">Dar préstamo</td><td class="fragment">PUT /libros/&ltid&gt</td></tr>
+          </table>
+          <aside class="notes">
+          </aside>
+        </section>
+
         <section data-background="images/constraints.jpg">
           <aside class="notes">
           </aside>
@@ -106,47 +143,75 @@
 
         <section>
           <h2>Cliente - Servidor</h2>
+          <ul>
+            <li>Separación conceptual</li>
+            <li>Permite el desarrollo independiente</li>
+            <li>Consumidor - Servicio</li>
+          </ul>
           <aside class="notes">
           </aside>
         </section>
 
         <section>
           <h2>Stateless</h2>
+          <ul>
+            <li>El servidor no guarda estados</li>
+            <li>Peticiones/Respuestas con toda la información</li>
+          </ul>
           <aside class="notes">
           </aside>
         </section>
 
         <section>
           <h2>Caché</h2>
-          <img class="logo" src="images/cacheable.jpg" />
+          <div>
+            <img class="logo" src="images/cacheable.jpg" />
+          </div>
+          <ul>
+            <li>Mejora el rendimiento</li>
+            <li>Se controla mediante E-Tags</li>
+            <li>Cabecera: If-None-Match</li>
+          </ul>
           <aside class="notes">
           </aside>
         </section>
 
         <section>
           <h2>Interfaz Uniforme</h2>
+          <ul>
+            <li>Acceso a la informacion de forma estándar</li>
+            <li>Separación entre lógica de aplicación y lógica de negocio</li>
+            <li>Facilita el desarrolo de clientes genéricos</li>
+          </ul>
           <aside class="notes">
           </aside>
         </section>
 
         <section>
           <h2>Sistema de Capas</h2>
-          <img class="logo" src="images/layered-system.jpg" />
+          <div>
+            <img width="50%" class="logo" src="images/layered-system.jpg" />
+          </div>
+          <ul>
+            <li>Permite agregar capas nuevas de forma transparente</li>
+            <li>Una capa solo es consciente de la capa siguiente</li>
+            <li>Simplifica arquitecturas distribuidas</li>
+          </ul>
           <aside class="notes">
           </aside>
         </section>
 
         <section>
           <h2>Código bajo demanda</h2>
+          <ul>
+            <li>Opcional</li>
+            <li>Uso de plugins</li>
+            <li>Permite delegar logica en los clientes</li>
+          </ul>
           <aside class="notes">
           </aside>
         </section>
 
-        <section>
-          <h2>Recursos</h2>
-          <aside class="notes">
-          </aside>
-        </section>
 
         <section>
           <h2>Hypermedia</h2>

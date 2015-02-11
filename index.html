@@ -55,11 +55,13 @@
           <h2>¿Qué es un API?</h2>
           <img src="images/apis.gif" />
           <aside class="notes">
-            Explicar lo que es un API.
-            Application Programming Interface.
-            Las APIs existen para cualquier cosa, gemas, lenguages, etc.
-            Solo son formas de acceder a la informacion.
-            Permiten acceder desde muchas interfaces distintas.
+            <ul>
+              <li>Explicar lo que es un API.</li>
+              <li>Application Programming Interface.</li>
+              <li>Las APIs existen para cualquier cosa, gemas, lenguages, etc.</li>
+              <li>Solo son formas de acceder a la informacion.</li>
+              <li>Permiten acceder desde muchas interfaces distintas.</li>
+            </ul>
           </aside>
         </section>
 
@@ -75,6 +77,9 @@
           <h1>Demo Time!</h1>
           <pre><code data-trim>
 require 'twitter'
+require 'dotenv'
+
+Dotenv.load
 
 client = Twitter::REST::Client.new do |config|
   config.consumer_key        = ENV["CONSUMER_KEY"]
@@ -91,8 +96,10 @@ puts client.friends( "sm477er" ).first.name
           </code></pre>
 
           <aside class="notes">
-            Cargar variables de entorno!!!
-            Esto es un cliente de API, no el API en si misma
+            <ul>
+              <li>Cargar variables de entorno!!!</li>
+              <li>Esto es un cliente de API, no el API en si misma</li>
+            </ul>
           </aside>
         </section>
 
@@ -227,9 +234,11 @@ Cookie: PHPSESSID=r2t5uvjq435r4q7ib3vtdjq120
 Pragma: no-cache
 Cache-Control: no-cache</code></pre>
           <aside class="notes">
-            Existen muchas distintas incluso propias
-            Normalemnte las pone el cliente o el servidor Web de forma automatica
-            Content-Disposition: attachment; filename=video.mp4
+            <ul>
+              <li>Existen muchas distintas incluso propias</li>
+              <li>Normalemnte las pone el cliente o el servidor Web de forma automatica</li>
+              <li>Content-Disposition: attachment; filename=video.mp4</li>
+            </ul>
           </aside>
         </section>
         <section>

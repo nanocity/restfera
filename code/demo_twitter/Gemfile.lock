@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.3.7)
     buftok (0.2.0)
+    dotenv (1.0.2)
     equalizer (0.0.9)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
@@ -32,4 +33,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dotenv
   twitter
