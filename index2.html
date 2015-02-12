@@ -212,12 +212,66 @@
           </aside>
         </section>
 
-
         <section>
           <h2>Hypermedia</h2>
+          <pre><code data-trim>
+{ "collection" :
+  {
+    "href" : "http://example.org/friends/",
+    "links" : [
+      {"rel" : "feed", "href" : "http://example.org/friends/rss"}
+    ],
+    "items" : [
+      {
+        "href" : "http://example.org/friends/jdoe",
+        "data" : [
+          {"name" : "full-name", "value" : "J. Doe", "prompt" : "Full Name"},
+          {"name" : "email", "value" : "jdoe@example.org", "prompt" : "Email"}
+        ],
+        "links" : [
+          {"rel" : "blog", "href" : "http://examples.org/blogs/jdoe", "prompt" : "Blog"},
+          {"rel" : "avatar", "href" : "http://examples.org/images/jdoe", "prompt" : "Avatar", "render" : "image"}
+        ]
+      },
+   ],
+  }
+}
+          </code></pre>
           <aside class="notes">
           </aside>
         </section>
+
+        <section>
+          <h2>Hypermedia</h2>
+          <ul>
+            <li>APIs navegables</li>
+            <li>APIs autodescubribles</li>
+            <li>Clientes más ligeros</li>
+          </ul>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h2>Mucho más!</h2>
+          <div>
+            <img width="50%" class="logo" src="images/iceberg.jpg" />
+          </div>
+          <ul>
+            <li>Versionado</li>
+            <li>Media Types</li>
+            <li>etc</li>
+          </ul>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h1>Preguntas y Respuestas</h1>
+          <aside class="notes">
+          </aside>
+        </section>
+
       </div>
     </div>
 
